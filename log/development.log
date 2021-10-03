@@ -1,0 +1,824 @@
+  [1m[35m (325.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (37.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (68.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (32.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateMovies (20210815033735)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "movies" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "rating" varchar, "description" text, "release_date" datetime, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210815033735"]]
+  [1m[36mTRANSACTION (9.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateMoviegoers (20210925160141)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "moviegoers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "provider" varchar, "uid" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210925160141"]]
+  [1m[36mTRANSACTION (6.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateUsers (20210925174025)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "provider" varchar, "uid" varchar, "email" varchar, "password" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210925174025"]]
+  [1m[36mTRANSACTION (9.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateReviews (20211001112755)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "potatoes" integer, "comments" text, "user_id" integer, "movie_id" integer)[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_user_id" ON "reviews" ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_movie_id" ON "reviews" ("movie_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211001112755"]]
+  [1m[36mTRANSACTION (9.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-10-03 12:59:58.834475"], ["updated_at", "2021-10-03 12:59:58.834475"]]
+  [1m[36mTRANSACTION (4.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "provider", "uid", "email", "password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "a"], ["last_name", "b"], ["provider", "facebook"], ["uid", "7"], ["email", "c"], ["password", "d"], ["created_at", "2021-10-03 13:00:07.320742"], ["updated_at", "2021-10-03 13:00:07.320742"]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for 127.0.0.1 at 2021-10-03 20:00:24 +0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 20:00:24 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 166.8ms | Allocations: 6549)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 285.8ms | Allocations: 18746)
+Completed 200 OK in 446ms (Views: 341.1ms | ActiveRecord: 0.0ms | Allocations: 27516)
+
+
+Started POST "/users/auth/facebook" for 127.0.0.1 at 2021-10-03 20:00:29 +0700
+Started GET "/users/auth/facebook/callback?code=AQBzoCn6Q3vlgcHVD4KrPxNQ1ZatWn3taa9_1OQlkY36KOv_cYfLmxxUx6JXf0yW2bNy9KfHvKklPEjqEVDZ3B8EhSbiMgGjiHqSoA37wJQHTVu6DMKiTeyl-mdGItuS_Yjo8ClLxOfbeAt3G75o_pVzteoZ-J-b5Yvs752FXJrZBIb3qeCFOky_q9vOttTLIPARBFB_7uF5IB-ujepL8h58YS-fwGTvobnSbgHVyUJ2R6LdQgfxI4pf6sKJZIhg_Xj3_pSghQe50wWsGMSowXxkzKCCYAoMkxYVeWMGTy5WF8W2jyGQpghIrz3C-sF5BmVtE_J-roIkTf2hB33t4BuSCZg41G__CLmIW3ierRPyHe7V5qe9wLip28wxdLa-F2DJgYuEAMLgJ39sGSDFdUfFzLElCIiGtpRhrGIpeLU8lg&state=cdb383f7e9e11d3705153878a4ff037e4cb94059a7654371" for 127.0.0.1 at 2021-10-03 20:00:43 +0700
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQBzoCn6Q3vlgcHVD4KrPxNQ1ZatWn3taa9_1OQlkY36KOv_cYfLmxxUx6JXf0yW2bNy9KfHvKklPEjqEVDZ3B8EhSbiMgGjiHqSoA37wJQHTVu6DMKiTeyl-mdGItuS_Yjo8ClLxOfbeAt3G75o_pVzteoZ-J-b5Yvs752FXJrZBIb3qeCFOky_q9vOttTLIPARBFB_7uF5IB-ujepL8h58YS-fwGTvobnSbgHVyUJ2R6LdQgfxI4pf6sKJZIhg_Xj3_pSghQe50wWsGMSowXxkzKCCYAoMkxYVeWMGTy5WF8W2jyGQpghIrz3C-sF5BmVtE_J-roIkTf2hB33t4BuSCZg41G__CLmIW3ierRPyHe7V5qe9wLip28wxdLa-F2DJgYuEAMLgJ39sGSDFdUfFzLElCIiGtpRhrGIpeLU8lg", "state"=>"cdb383f7e9e11d3705153878a4ff037e4cb94059a7654371"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:5:in `from_omniauth'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:6:in `from_omniauth'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "provider", "uid", "password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "Kamfoy"], ["last_name", "Nipon"], ["provider", "facebook"], ["uid", "639937060746240"], ["password", "DPyVqMxUazz28nsLRzZa"], ["created_at", "2021-10-03 13:00:46.209853"], ["updated_at", "2021-10-03 13:00:46.209853"]]
+  ↳ app/models/user.rb:6:in `from_omniauth'
+  [1m[36mTRANSACTION (33.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:6:in `from_omniauth'
+Redirected to http://localhost:3000/
+Completed 302 Found in 518ms (ActiveRecord: 34.9ms | Allocations: 9908)
+
+
+Started GET "/" for 127.0.0.1 at 2021-10-03 20:00:46 +0700
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 20:00:46 +0700
+Processing by MoviesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies"[0m
+  ↳ app/views/movies/index.html.haml:19:in `each_with_index'
+  Rendered movies/_search_tmdb_form.html.haml (Duration: 19.9ms | Allocations: 2718)
+  Rendered movies/index.html.haml within layouts/application (Duration: 28.3ms | Allocations: 4260)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 46.0ms | Allocations: 7406)
+Completed 200 OK in 153ms (Views: 50.6ms | ActiveRecord: 0.5ms | Allocations: 8896)
+
+
+Started GET "/movies/new" for 127.0.0.1 at 2021-10-03 20:00:54 +0700
+Processing by MoviesController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/new.html.haml within layouts/application
+  Rendered movies/_movie_form.html.haml (Duration: 58.5ms | Allocations: 10563)
+  Rendered movies/new.html.haml within layouts/application (Duration: 70.6ms | Allocations: 12932)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 86.3ms | Allocations: 16074)
+Completed 200 OK in 306ms (Views: 87.3ms | ActiveRecord: 0.7ms | Allocations: 21031)
+
+
+Started POST "/movies" for 127.0.0.1 at 2021-10-03 20:01:22 +0700
+Processing by MoviesController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "movie"=>{"title"=>"test", "rating"=>"G", "release_date(1i)"=>"2021", "release_date(2i)"=>"10", "release_date(3i)"=>"3", "description"=>"d"}, "commit"=>"Save Changes"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/movies_controller.rb:36:in `create'
+  [1m[36mMovie Create (0.4ms)[0m  [1m[32mINSERT INTO "movies" ("title", "rating", "description", "release_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Test"], ["rating", "G"], ["description", "d"], ["release_date", "2021-10-03 00:00:00"], ["created_at", "2021-10-03 13:01:22.377264"], ["updated_at", "2021-10-03 13:01:22.377264"]]
+  ↳ app/controllers/movies_controller.rb:36:in `create'
+  [1m[36mTRANSACTION (15.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/movies_controller.rb:36:in `create'
+Redirected to http://localhost:3000/movies
+Completed 302 Found in 61ms (ActiveRecord: 15.9ms | Allocations: 4240)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 20:01:22 +0700
+Processing by MoviesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  [1m[36mMovie Load (0.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies"[0m
+  ↳ app/views/movies/index.html.haml:19:in `each_with_index'
+  Rendered movies/_search_tmdb_form.html.haml (Duration: 0.5ms | Allocations: 194)
+  Rendered movies/index.html.haml within layouts/application (Duration: 10.8ms | Allocations: 1537)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 50.7ms | Allocations: 4779)
+Completed 200 OK in 64ms (Views: 52.3ms | ActiveRecord: 0.7ms | Allocations: 6092)
+
+
+Started GET "/movies/1" for 127.0.0.1 at 2021-10-03 20:01:26 +0700
+Processing by MoviesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/movies_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/show.html.haml within layouts/application
+  [1m[36mReview Load (0.8ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."movie_id" = ?[0m  [["movie_id", 1]]
+  ↳ app/views/movies/show.html.haml:29
+  Rendered movies/show.html.haml within layouts/application (Duration: 82.4ms | Allocations: 14063)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 97.1ms | Allocations: 17254)
+Completed 200 OK in 112ms (Views: 99.9ms | ActiveRecord: 1.4ms | Allocations: 19605)
+
+
+Started DELETE "/movies/1" for 127.0.0.1 at 2021-10-03 20:01:34 +0700
+Processing by MoviesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/movies_controller.rb:59:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/movies_controller.rb:60:in `destroy'
+  [1m[36mMovie Destroy (0.3ms)[0m  [1m[31mDELETE FROM "movies" WHERE "movies"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/movies_controller.rb:60:in `destroy'
+  [1m[36mTRANSACTION (5.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/movies_controller.rb:60:in `destroy'
+Redirected to http://localhost:3000/movies
+Completed 302 Found in 33ms (ActiveRecord: 6.3ms | Allocations: 3625)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 20:01:34 +0700
+Processing by MoviesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies"[0m
+  ↳ app/views/movies/index.html.haml:19:in `each_with_index'
+  Rendered movies/_search_tmdb_form.html.haml (Duration: 0.4ms | Allocations: 194)
+  Rendered movies/index.html.haml within layouts/application (Duration: 8.6ms | Allocations: 1402)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 193.5ms | Allocations: 4637)
+Completed 200 OK in 206ms (Views: 201.7ms | ActiveRecord: 0.3ms | Allocations: 5949)
+
+
+Started GET "/logout" for 127.0.0.1 at 2021-10-03 20:42:51 +0700
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Users::OmniauthCallbacksController#destroy as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+Redirected to http://localhost:3000/users/sign_out
+Completed 302 Found in 176ms (ActiveRecord: 0.9ms | Allocations: 8144)
+
+
+Started GET "/users/sign_out" for 127.0.0.1 at 2021-10-03 20:42:52 +0700
+Processing by Devise::SessionsController#destroy as HTML
+Redirected to http://localhost:3000/
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 302 Found in 16ms (ActiveRecord: 0.0ms | Allocations: 2190)
+
+
+Started GET "/" for 127.0.0.1 at 2021-10-03 20:42:52 +0700
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 20:42:52 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 45.2ms | Allocations: 6473)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 125.7ms | Allocations: 15491)
+Completed 200 OK in 148ms (Views: 137.9ms | ActiveRecord: 0.0ms | Allocations: 19441)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 20:44:15 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 0.4ms | Allocations: 190)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 49.5ms | Allocations: 3479)
+Completed 200 OK in 56ms (Views: 55.0ms | ActiveRecord: 0.0ms | Allocations: 4112)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 20:44:15 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 10.2ms | Allocations: 188)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 56.0ms | Allocations: 3475)
+Completed 200 OK in 68ms (Views: 63.4ms | ActiveRecord: 0.0ms | Allocations: 4071)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 20:44:17 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 0.4ms | Allocations: 188)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 35.2ms | Allocations: 3477)
+Completed 200 OK in 44ms (Views: 38.4ms | ActiveRecord: 0.0ms | Allocations: 4086)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 20:44:18 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 5.6ms | Allocations: 188)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 30.2ms | Allocations: 3478)
+Completed 200 OK in 44ms (Views: 36.0ms | ActiveRecord: 0.0ms | Allocations: 4087)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 20:44:19 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 0.7ms | Allocations: 188)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 37.1ms | Allocations: 3475)
+Completed 200 OK in 45ms (Views: 43.4ms | ActiveRecord: 0.0ms | Allocations: 4071)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 20:44:19 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 0.5ms | Allocations: 188)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 46.3ms | Allocations: 3475)
+Completed 200 OK in 52ms (Views: 51.2ms | ActiveRecord: 0.0ms | Allocations: 4071)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 20:44:19 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 0.6ms | Allocations: 188)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 74.5ms | Allocations: 3475)
+Completed 200 OK in 91ms (Views: 84.8ms | ActiveRecord: 0.0ms | Allocations: 4071)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 20:44:20 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 0.7ms | Allocations: 188)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 34.8ms | Allocations: 3486)
+Completed 200 OK in 64ms (Views: 63.3ms | ActiveRecord: 0.0ms | Allocations: 4094)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 20:44:21 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 0.6ms | Allocations: 188)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 18.3ms | Allocations: 3475)
+Completed 200 OK in 32ms (Views: 25.8ms | ActiveRecord: 0.0ms | Allocations: 4071)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 20:44:23 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 0.5ms | Allocations: 188)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 24.3ms | Allocations: 3484)
+Completed 200 OK in 32ms (Views: 30.7ms | ActiveRecord: 0.0ms | Allocations: 4080)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 20:44:59 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 0.6ms | Allocations: 188)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 22.2ms | Allocations: 3475)
+Completed 200 OK in 28ms (Views: 26.6ms | ActiveRecord: 0.0ms | Allocations: 4071)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 20:45:01 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 0.7ms | Allocations: 188)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 25.7ms | Allocations: 3475)
+Completed 200 OK in 36ms (Views: 34.7ms | ActiveRecord: 0.0ms | Allocations: 4075)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 20:45:03 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 0.5ms | Allocations: 188)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 22.5ms | Allocations: 3507)
+Completed 200 OK in 32ms (Views: 31.1ms | ActiveRecord: 0.0ms | Allocations: 4103)
+
+
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "moviegoers"[0m
+  [1m[35m (20.8ms)[0m  [1m[35mCREATE TABLE "moviegoers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "provider" varchar, "uid" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "movies"[0m
+  [1m[35m (22.6ms)[0m  [1m[35mCREATE TABLE "movies" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "rating" varchar, "description" text, "release_date" datetime, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "reviews"[0m
+  [1m[35m (28.8ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "potatoes" integer, "comments" text, "user_id" integer, "movie_id" integer)[0m
+  [1m[35m (10.4ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_movie_id" ON "reviews" ("movie_id")[0m
+  [1m[35m (8.0ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_user_id" ON "reviews" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (9.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "provider" varchar, "uid" varchar, "email" varchar, "password" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (9.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (12.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20211001112755)[0m
+  [1m[35m (29.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210815033735),
+(20210925160141),
+(20210925174025);
+
+[0m
+  [1m[35m (30.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-10-03 15:04:02.930869"], ["updated_at", "2021-10-03 15:04:02.930869"]]
+  [1m[36mTRANSACTION (15.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (2.6ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-10-03 15:04:03.010079"], ["key", "environment"]]
+  [1m[36mTRANSACTION (18.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "4a100278d524da3eb8bca4ef1a37fe536ba207fa"], ["created_at", "2021-10-03 15:04:03.067135"], ["updated_at", "2021-10-03 15:04:03.067135"]]
+  [1m[36mTRANSACTION (14.6ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for 127.0.0.1 at 2021-10-03 22:21:33 +0700
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 22:21:33 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 51.5ms | Allocations: 6506)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 163.3ms | Allocations: 15569)
+Completed 200 OK in 276ms (Views: 194.6ms | ActiveRecord: 0.0ms | Allocations: 20686)
+
+
+Started POST "/users/auth/facebook" for 127.0.0.1 at 2021-10-03 22:21:40 +0700
+Started GET "/users/auth/facebook/callback?code=AQC-JjtVnIPUg3MUl3P-KgvAkCHxzYBcB5GvtMY3_lCbHDVN0mGeQe3xkWNM6ihFWJEPZ3F_WHFCVK8xH8VtO5If8YsokhBmlafDMIVFswk5b4Sdi2wdqZgd1vXvjhcZvCW-zMkEsAB6E5hnDUisWIcA6jNpS3yb-28vAn4mxwq1rI882g5sODkOATVlxAfDYZ0m3gnV_oIZkEJg8BQK3JtMaeZFEUBseGvOacJyh6s3sKcY1jmhV7TrALd7AgxwTuTJ7X0aAqn0OFAd_Ri3ullzXQQIufs2Mor_nkWfA35Kv_NS46uUUwMlY8D3o_hYY7UawCVvwK6DYRSxtpDCsZ1wArxotGiKf7hdbchyFBZXHFHiPadD5l2MEpDvbwpgSdHIlMo0_BXnFhJZdcYBjCR0m2sPOZhfdf0k0UGYQ095Eg&state=b58a02711e6104dfff868e2d6dda9d44e9bbc6ac78215ce6" for 127.0.0.1 at 2021-10-03 22:21:47 +0700
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQC-JjtVnIPUg3MUl3P-KgvAkCHxzYBcB5GvtMY3_lCbHDVN0mGeQe3xkWNM6ihFWJEPZ3F_WHFCVK8xH8VtO5If8YsokhBmlafDMIVFswk5b4Sdi2wdqZgd1vXvjhcZvCW-zMkEsAB6E5hnDUisWIcA6jNpS3yb-28vAn4mxwq1rI882g5sODkOATVlxAfDYZ0m3gnV_oIZkEJg8BQK3JtMaeZFEUBseGvOacJyh6s3sKcY1jmhV7TrALd7AgxwTuTJ7X0aAqn0OFAd_Ri3ullzXQQIufs2Mor_nkWfA35Kv_NS46uUUwMlY8D3o_hYY7UawCVvwK6DYRSxtpDCsZ1wArxotGiKf7hdbchyFBZXHFHiPadD5l2MEpDvbwpgSdHIlMo0_BXnFhJZdcYBjCR0m2sPOZhfdf0k0UGYQ095Eg", "state"=>"b58a02711e6104dfff868e2d6dda9d44e9bbc6ac78215ce6"}
+  [1m[36mUser Load (4.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:5:in `from_omniauth'
+Redirected to http://localhost:3000/
+Completed 302 Found in 81ms (ActiveRecord: 5.6ms | Allocations: 6753)
+
+
+Started GET "/" for 127.0.0.1 at 2021-10-03 22:21:48 +0700
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 22:21:48 +0700
+Processing by MoviesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  [1m[36mMovie Load (0.8ms)[0m  [1m[34mSELECT "movies".* FROM "movies"[0m
+  ↳ app/views/movies/index.html.haml:19:in `each_with_index'
+  Rendered movies/_search_tmdb_form.html.haml (Duration: 13.4ms | Allocations: 2477)
+  Rendered movies/index.html.haml within layouts/application (Duration: 33.6ms | Allocations: 4012)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 58.1ms | Allocations: 7158)
+Completed 200 OK in 75ms (Views: 64.3ms | ActiveRecord: 1.1ms | Allocations: 8620)
+
+
+Started GET "/logout" for 127.0.0.1 at 2021-10-03 22:24:58 +0700
+Processing by Users::OmniauthCallbacksController#destroy as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+Redirected to http://localhost:3000/users/sign_out
+Completed 302 Found in 14ms (ActiveRecord: 0.2ms | Allocations: 1316)
+
+
+Started GET "/users/sign_out" for 127.0.0.1 at 2021-10-03 22:24:58 +0700
+Processing by Devise::SessionsController#destroy as HTML
+Redirected to http://localhost:3000/
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 302 Found in 33ms (ActiveRecord: 0.0ms | Allocations: 2154)
+
+
+Started GET "/" for 127.0.0.1 at 2021-10-03 22:24:58 +0700
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 22:24:58 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 0.6ms | Allocations: 191)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 43.4ms | Allocations: 3505)
+Completed 200 OK in 67ms (Views: 66.0ms | ActiveRecord: 0.0ms | Allocations: 4088)
+
+
+Started POST "/users/auth/facebook" for 127.0.0.1 at 2021-10-03 22:25:30 +0700
+Started GET "/users/auth/facebook/callback?code=AQDzx5Wc6n6AzUcNWp4S8eiAYabfcw-nJ0COtDhLjQxxzXozt8Ktctk7l8MngQufaZ4qKBNjyYGddtE5tqV40cN0ennAQ-99fRrk6GVrRjoi0DQM-lJ3-Aa5Gr0z0RsJG6Ma-D7KoyH4zxCx3ab1BkzkX0XC7imuviqr0S6uy06mefCK_R2SUk_WzCtxnAE7oWZfSeBMrANxqJ2giDOqDDp5uHb3y6Vww0Y4T3wuv7x9PtPxg3TptEV5URakOR3ffo4hXp_s-zLuaONLH1UZTnHwGarJ7kskjjq16T1LdHsq7e5mSCFxF0yuvkeM90W0U2mJLSB1iXX3rSUk-zF_Oxmdajdq4LodkU5v5VDq0Sy_7kdbIrV4xmGOBHcIjIusF3EZGsO4aAfqYEAbajaKnN7u92B69BcTM6JPcj9CLWmG3g&state=dea614b8879b0259e16eb09493bbc80a9f5a9a67cfe5f849" for 127.0.0.1 at 2021-10-03 22:25:37 +0700
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQDzx5Wc6n6AzUcNWp4S8eiAYabfcw-nJ0COtDhLjQxxzXozt8Ktctk7l8MngQufaZ4qKBNjyYGddtE5tqV40cN0ennAQ-99fRrk6GVrRjoi0DQM-lJ3-Aa5Gr0z0RsJG6Ma-D7KoyH4zxCx3ab1BkzkX0XC7imuviqr0S6uy06mefCK_R2SUk_WzCtxnAE7oWZfSeBMrANxqJ2giDOqDDp5uHb3y6Vww0Y4T3wuv7x9PtPxg3TptEV5URakOR3ffo4hXp_s-zLuaONLH1UZTnHwGarJ7kskjjq16T1LdHsq7e5mSCFxF0yuvkeM90W0U2mJLSB1iXX3rSUk-zF_Oxmdajdq4LodkU5v5VDq0Sy_7kdbIrV4xmGOBHcIjIusF3EZGsO4aAfqYEAbajaKnN7u92B69BcTM6JPcj9CLWmG3g", "state"=>"dea614b8879b0259e16eb09493bbc80a9f5a9a67cfe5f849"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:5:in `from_omniauth'
+Redirected to http://localhost:3000/
+Completed 302 Found in 19ms (ActiveRecord: 0.2ms | Allocations: 1189)
+
+
+Started GET "/" for 127.0.0.1 at 2021-10-03 22:25:39 +0700
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 22:25:39 +0700
+Processing by MoviesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies"[0m
+  ↳ app/views/movies/index.html.haml:19:in `each_with_index'
+  Rendered movies/_search_tmdb_form.html.haml (Duration: 0.6ms | Allocations: 195)
+  Rendered movies/index.html.haml within layouts/application (Duration: 20.3ms | Allocations: 1413)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 64.6ms | Allocations: 4659)
+Completed 200 OK in 83ms (Views: 71.7ms | ActiveRecord: 0.3ms | Allocations: 5974)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 22:30:06 +0700
+Processing by MoviesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  [1m[36mMovie Load (3.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies"[0m
+  ↳ app/views/movies/index.html.haml:19:in `each_with_index'
+  Rendered movies/_search_tmdb_form.html.haml (Duration: 0.7ms | Allocations: 194)
+  Rendered movies/index.html.haml within layouts/application (Duration: 32.7ms | Allocations: 1403)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 70.6ms | Allocations: 4632)
+Completed 200 OK in 108ms (Views: 79.1ms | ActiveRecord: 3.4ms | Allocations: 6036)
+
+
+Started GET "/logout" for 127.0.0.1 at 2021-10-03 22:30:17 +0700
+Processing by Users::OmniauthCallbacksController#destroy as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+Redirected to http://localhost:3000/users/sign_out
+Completed 302 Found in 18ms (ActiveRecord: 0.2ms | Allocations: 1210)
+
+
+Started GET "/users/sign_out" for 127.0.0.1 at 2021-10-03 22:30:17 +0700
+Processing by Devise::SessionsController#destroy as HTML
+Redirected to http://localhost:3000/
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.0ms | Allocations: 438)
+
+
+Started GET "/" for 127.0.0.1 at 2021-10-03 22:30:17 +0700
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 22:30:17 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 0.5ms | Allocations: 190)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 44.3ms | Allocations: 3502)
+Completed 200 OK in 73ms (Views: 72.0ms | ActiveRecord: 0.0ms | Allocations: 4066)
+
+
+Started POST "/users/auth/facebook" for 127.0.0.1 at 2021-10-03 22:30:30 +0700
+Started GET "/users/auth/facebook/callback?code=AQC7w2eOE2lJ6DunVU8-pTKA1V8Z8VsGnBnS7ZK21xHJDQmDqH_V6ep10n7tEcg1sLLFs6wYZ977GeX73A7BL1vFS7Ra3L1opLkortMTB9zw6L21Qi-cQV3wEgLQGNg-YavCzoxjMzmoxFpNx5073IoGCSxAXx79mr9n5Lvras_7n7TVguiUnCUT5nPSRxKaBj27xj91_8B1GwrdnS29TzVx_zM9YPEuTX68tYmg4QT-DabMZ7GCKcxOdlMwmMPAgGWmRCY24ljcCh0AZnRCH3gyS5FY4MPxJHfXlkIwfdSbNbKZ2ze9k8Iu8aqQyE95VQt_UfCQgzd3OLjA2FyOq6Y1gIfHpRI6irNy4YfCHitie0gzRZxdDf24kxOqON8s7rtbysIpzsYV0YTzc3PmEWDAJutI1Ioxpfr6ZcT_X8eFTw&state=4a9ba7ef2d772dbc4e8b3d4099efaf18c5cbea07ba2a1a22" for 127.0.0.1 at 2021-10-03 22:30:38 +0700
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQC7w2eOE2lJ6DunVU8-pTKA1V8Z8VsGnBnS7ZK21xHJDQmDqH_V6ep10n7tEcg1sLLFs6wYZ977GeX73A7BL1vFS7Ra3L1opLkortMTB9zw6L21Qi-cQV3wEgLQGNg-YavCzoxjMzmoxFpNx5073IoGCSxAXx79mr9n5Lvras_7n7TVguiUnCUT5nPSRxKaBj27xj91_8B1GwrdnS29TzVx_zM9YPEuTX68tYmg4QT-DabMZ7GCKcxOdlMwmMPAgGWmRCY24ljcCh0AZnRCH3gyS5FY4MPxJHfXlkIwfdSbNbKZ2ze9k8Iu8aqQyE95VQt_UfCQgzd3OLjA2FyOq6Y1gIfHpRI6irNy4YfCHitie0gzRZxdDf24kxOqON8s7rtbysIpzsYV0YTzc3PmEWDAJutI1Ioxpfr6ZcT_X8eFTw", "state"=>"4a9ba7ef2d772dbc4e8b3d4099efaf18c5cbea07ba2a1a22"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:5:in `from_omniauth'
+Redirected to http://localhost:3000/
+Completed 302 Found in 28ms (ActiveRecord: 0.2ms | Allocations: 1207)
+
+
+Started GET "/" for 127.0.0.1 at 2021-10-03 22:30:39 +0700
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 22:30:39 +0700
+Processing by MoviesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies"[0m
+  ↳ app/views/movies/index.html.haml:19:in `each_with_index'
+  Rendered movies/_search_tmdb_form.html.haml (Duration: 0.6ms | Allocations: 194)
+  Rendered movies/index.html.haml within layouts/application (Duration: 13.2ms | Allocations: 1412)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 49.0ms | Allocations: 4659)
+Completed 200 OK in 94ms (Views: 58.1ms | ActiveRecord: 0.3ms | Allocations: 5976)
+
+
+Started GET "/logout" for 127.0.0.1 at 2021-10-03 22:35:19 +0700
+Processing by Users::OmniauthCallbacksController#destroy as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+Redirected to http://localhost:3000/users/sign_out
+Completed 302 Found in 22ms (ActiveRecord: 0.2ms | Allocations: 1210)
+
+
+Started GET "/users/sign_out" for 127.0.0.1 at 2021-10-03 22:35:19 +0700
+Processing by Devise::SessionsController#destroy as HTML
+Redirected to http://localhost:3000/
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 302 Found in 7ms (ActiveRecord: 0.0ms | Allocations: 445)
+
+
+Started GET "/" for 127.0.0.1 at 2021-10-03 22:35:19 +0700
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 22:35:19 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 0.5ms | Allocations: 189)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 49.4ms | Allocations: 3502)
+Completed 200 OK in 64ms (Views: 52.8ms | ActiveRecord: 0.0ms | Allocations: 4074)
+
+
+Started POST "/users/auth/facebook" for 127.0.0.1 at 2021-10-03 22:35:27 +0700
+Started GET "/" for 127.0.0.1 at 2021-10-03 22:35:57 +0700
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 22:35:57 +0700
+Processing by MoviesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  Rendered movies/index.html.haml within layouts/application (Duration: 0.6ms | Allocations: 188)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 24.4ms | Allocations: 3475)
+Completed 200 OK in 31ms (Views: 29.2ms | ActiveRecord: 0.0ms | Allocations: 4044)
+
+
+Started POST "/users/auth/facebook" for 127.0.0.1 at 2021-10-03 22:49:25 +0700
+Started GET "/users/auth/facebook/callback?code=AQDk0bG583FBn4AVyK3XAgraifUdnK2daRSa4QdFDs_uNK9wvHDIXOFRTcuOghoO2VHRy1QEv3fWnc_W9N7lETMLFkoneBPrfSA5LdBr6Jx4AivhkKJE3mA7U9t-EOmwWP2TqXZvQFM28RtLsJdSsVpHw_FQw_5igm2y5_VTitam14nO3fLpHBnZ-QmKX9xmPgG5h2UgLEQskNmooN_CW-vqcaBAfN5qhdb4TRplXv1T4My6VWKkmIODjajH0KZ7agN-4yr8ieV640DtiYdnYAbEVJEGZxz8Hykzd2O654-tMgR0b7FsMAYNoKgnMcTSuAK-C4meSh90WMJFs3E1M0U5taylpxjDt_3c4v0EWw71qw0KtKalKVlOOkj1AQly0hHfB3EKvSF-SfilamccWyHibxItm8U0CKrQgvqB7Ycx2w&state=f145481d4ad15eb85334f6a1bfa7dcea901f312fdfdd18a8" for 127.0.0.1 at 2021-10-03 22:49:48 +0700
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQDk0bG583FBn4AVyK3XAgraifUdnK2daRSa4QdFDs_uNK9wvHDIXOFRTcuOghoO2VHRy1QEv3fWnc_W9N7lETMLFkoneBPrfSA5LdBr6Jx4AivhkKJE3mA7U9t-EOmwWP2TqXZvQFM28RtLsJdSsVpHw_FQw_5igm2y5_VTitam14nO3fLpHBnZ-QmKX9xmPgG5h2UgLEQskNmooN_CW-vqcaBAfN5qhdb4TRplXv1T4My6VWKkmIODjajH0KZ7agN-4yr8ieV640DtiYdnYAbEVJEGZxz8Hykzd2O654-tMgR0b7FsMAYNoKgnMcTSuAK-C4meSh90WMJFs3E1M0U5taylpxjDt_3c4v0EWw71qw0KtKalKVlOOkj1AQly0hHfB3EKvSF-SfilamccWyHibxItm8U0CKrQgvqB7Ycx2w", "state"=>"f145481d4ad15eb85334f6a1bfa7dcea901f312fdfdd18a8"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/models/user.rb:5:in `from_omniauth'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:5:in `from_omniauth'
+Redirected to http://localhost:3000/
+Completed 302 Found in 36ms (ActiveRecord: 0.8ms | Allocations: 1915)
+
+
+Started GET "/" for 127.0.0.1 at 2021-10-03 22:49:49 +0700
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 22:49:49 +0700
+Processing by MoviesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  [1m[36mMovie Load (0.7ms)[0m  [1m[34mSELECT "movies".* FROM "movies"[0m
+  ↳ app/views/movies/index.html.haml:19:in `each_with_index'
+  Rendered movies/_search_tmdb_form.html.haml (Duration: 0.8ms | Allocations: 194)
+  Rendered movies/index.html.haml within layouts/application (Duration: 29.2ms | Allocations: 1434)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 57.1ms | Allocations: 4680)
+Completed 200 OK in 87ms (Views: 67.0ms | ActiveRecord: 0.9ms | Allocations: 6018)
+
+
+Started GET "/movies/new" for 127.0.0.1 at 2021-10-03 23:38:50 +0700
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by MoviesController#new as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/new.html.haml within layouts/application
+  Rendered movies/_movie_form.html.haml (Duration: 56.2ms | Allocations: 8144)
+  Rendered movies/new.html.haml within layouts/application (Duration: 72.1ms | Allocations: 12636)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 148.3ms | Allocations: 21571)
+Completed 200 OK in 374ms (Views: 179.6ms | ActiveRecord: 2.4ms | Allocations: 37113)
+
+
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "moviegoers"[0m
+  [1m[35m (17.3ms)[0m  [1m[35mCREATE TABLE "moviegoers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "provider" varchar, "uid" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "movies"[0m
+  [1m[35m (10.8ms)[0m  [1m[35mCREATE TABLE "movies" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "rating" varchar, "description" text, "release_date" datetime, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "reviews"[0m
+  [1m[35m (18.2ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "potatoes" integer, "comments" text, "user_id" integer, "movie_id" integer)[0m
+  [1m[35m (9.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_movie_id" ON "reviews" ("movie_id")[0m
+  [1m[35m (23.5ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_user_id" ON "reviews" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (22.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "provider" varchar, "uid" varchar, "email" varchar, "password" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (8.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20211001112755)[0m
+  [1m[35m (18.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210815033735),
+(20210925160141),
+(20210925174025);
+
+[0m
+  [1m[35m (9.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-10-03 16:39:48.584324"], ["updated_at", "2021-10-03 16:39:48.584324"]]
+  [1m[36mTRANSACTION (18.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (5.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (8.2ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-10-03 16:39:48.630822"], ["key", "environment"]]
+  [1m[36mTRANSACTION (13.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (8.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "4a100278d524da3eb8bca4ef1a37fe536ba207fa"], ["created_at", "2021-10-03 16:39:48.674965"], ["updated_at", "2021-10-03 16:39:48.674965"]]
+  [1m[36mTRANSACTION (12.9ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 23:46:34 +0700
+Processing by MoviesController#index as HTML
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  [1m[36mUser Load (22.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  [1m[36mMovie Load (0.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies"[0m
+  ↳ app/views/movies/index.html.haml:19:in `each_with_index'
+  Rendered movies/_search_tmdb_form.html.haml (Duration: 7.7ms | Allocations: 1945)
+  Rendered movies/index.html.haml within layouts/application (Duration: 83.3ms | Allocations: 7581)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 112.2ms | Allocations: 10710)
+Completed 200 OK in 174ms (Views: 128.4ms | ActiveRecord: 23.4ms | Allocations: 13212)
+
+
+Started GET "/movies/new" for 127.0.0.1 at 2021-10-03 23:46:50 +0700
+Processing by MoviesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/new.html.haml within layouts/application
+  Rendered movies/_movie_form.html.haml (Duration: 7.6ms | Allocations: 2946)
+  Rendered movies/new.html.haml within layouts/application (Duration: 28.0ms | Allocations: 3406)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 127.3ms | Allocations: 6647)
+Completed 200 OK in 151ms (Views: 132.3ms | ActiveRecord: 0.2ms | Allocations: 8109)
+
+
+Started POST "/movies" for 127.0.0.1 at 2021-10-03 23:47:29 +0700
+Processing by MoviesController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "movie"=>{"title"=>"", "rating"=>"G", "release_date(1i)"=>"2021", "release_date(2i)"=>"10", "release_date(3i)"=>"3", "description"=>""}, "commit"=>"Save Changes"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/new.html.haml within layouts/application
+  Rendered movies/_movie_form.html.haml (Duration: 27.5ms | Allocations: 4057)
+  Rendered movies/new.html.haml within layouts/application (Duration: 30.0ms | Allocations: 4506)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 66.5ms | Allocations: 7655)
+Completed 200 OK in 113ms (Views: 85.7ms | ActiveRecord: 0.2ms | Allocations: 10478)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-03 23:50:15 +0700
+Processing by MoviesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies"[0m
+  ↳ app/views/movies/index.html.haml:19:in `each_with_index'
+  Rendered movies/_search_tmdb_form.html.haml (Duration: 0.9ms | Allocations: 194)
+  Rendered movies/index.html.haml within layouts/application (Duration: 28.0ms | Allocations: 1403)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 54.0ms | Allocations: 4632)
+Completed 200 OK in 76ms (Views: 65.2ms | ActiveRecord: 0.3ms | Allocations: 6113)
+
+
+Started GET "/movies/new" for 127.0.0.1 at 2021-10-03 23:59:10 +0700
+Processing by MoviesController#new as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/new.html.haml within layouts/application
+  Rendered movies/_movie_form.html.haml (Duration: 3.5ms | Allocations: 2946)
+  Rendered movies/new.html.haml within layouts/application (Duration: 9.2ms | Allocations: 3406)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 39.9ms | Allocations: 6642)
+Completed 200 OK in 83ms (Views: 45.7ms | ActiveRecord: 4.0ms | Allocations: 8825)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-04 00:05:18 +0700
+Processing by MoviesController#index as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  [1m[36mUser Load (10.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies"[0m
+  ↳ app/views/movies/index.html.haml:19:in `each_with_index'
+  Rendered movies/_search_tmdb_form.html.haml (Duration: 0.7ms | Allocations: 194)
+  Rendered movies/index.html.haml within layouts/application (Duration: 13.2ms | Allocations: 1425)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 41.3ms | Allocations: 4657)
+Completed 200 OK in 73ms (Views: 47.8ms | ActiveRecord: 11.3ms | Allocations: 6880)
+
+
+Started GET "/movies" for 127.0.0.1 at 2021-10-04 00:30:34 +0700
+  
+ActiveRecord::ConnectionNotEstablished (connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "nopin" does not exist
+):
+  
+activerecord (6.1.4) lib/active_record/connection_adapters/postgresql_adapter.rb:83:in `rescue in new_client'
+activerecord (6.1.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (6.1.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (6.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:882:in `public_send'
+activerecord (6.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:882:in `new_connection'
+activerecord (6.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:926:in `checkout_new_connection'
+activerecord (6.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:905:in `try_to_checkout_new_connection'
+activerecord (6.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:866:in `acquire_connection'
+activerecord (6.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:588:in `checkout'
+activerecord (6.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:428:in `connection'
+activerecord (6.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:1128:in `retrieve_connection'
+activerecord (6.1.4) lib/active_record/connection_handling.rb:327:in `retrieve_connection'
+activerecord (6.1.4) lib/active_record/connection_handling.rb:283:in `connection'
+activerecord (6.1.4) lib/active_record/migration.rb:611:in `connection'
+activerecord (6.1.4) lib/active_record/migration.rb:606:in `build_watcher'
+activerecord (6.1.4) lib/active_record/migration.rb:588:in `block in call'
+activerecord (6.1.4) lib/active_record/migration.rb:587:in `synchronize'
+activerecord (6.1.4) lib/active_record/migration.rb:587:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.4) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+rack-mini-profiler (2.3.2) lib/mini_profiler/profiler.rb:384:in `call'
+webpacker (5.4.0) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.0) lib/rack/proxy.rb:63:in `call'
+railties (6.1.4) lib/rails/engine.rb:539:in `call'
+puma (5.4.0) lib/puma/configuration.rb:249:in `call'
+puma (5.4.0) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.4.0) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.4.0) lib/puma/request.rb:76:in `handle_request'
+puma (5.4.0) lib/puma/server.rb:440:in `process_client'
+puma (5.4.0) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/movies" for 127.0.0.1 at 2021-10-04 00:55:32 +0700
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by MoviesController#index as HTML
+  [1m[36mUser Load (3.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/index.html.haml within layouts/application
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies"[0m
+  ↳ app/views/movies/index.html.haml:19:in `each_with_index'
+  Rendered movies/_search_tmdb_form.html.haml (Duration: 11.1ms | Allocations: 2389)
+  Rendered movies/index.html.haml within layouts/application (Duration: 40.8ms | Allocations: 10286)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.haml (Duration: 109.8ms | Allocations: 19210)
+Completed 200 OK in 240ms (Views: 149.9ms | ActiveRecord: 4.3ms | Allocations: 30738)
+
+

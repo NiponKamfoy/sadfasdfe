@@ -1,0 +1,18 @@
+!!! 5
+%html
+  %head
+    %title RottenPotatoes!
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    
+  %body
+    = link_to movies_path do
+      %h2 Rotten Potatoes
+    = yield
+    - if flash[:notice]
+      #notice.message= flash[:notice]
+    - elsif flash[:warning]
+      #warning.message= flash[:warning]
+    
